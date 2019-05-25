@@ -1,0 +1,48 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Mar 10 20:05:13 2018
+
+@author: jofadamiro
+"""
+
+def discount(prices, isPet, nItems):
+    i = 0
+    petCost = 0
+    pets = 0
+    items = 0
+    itemsCost = 0
+    while i < nItems:
+        if isPet[i]:
+            petCost += prices[i]
+            pets += 1
+        else:
+            itemsCost += prices[i]
+            items += 1
+        i += 1
+    if pets >= 1 and items >=5:
+        print("You receive discount")
+        discountAmount = 0.2 * itemsCost
+        finalBill = petCost + itemsCost - discountAmount
+        print("The Discount is", finalBill)
+    else:
+        print("You do not receive any discount")
+        finalBill = petCost + itemsCost
+        print("The Final price is", finalBill)
+
+
+prices = []
+isPet = []
+while True:
+    price = int(input("Enter the price (-1 to quit): "))
+    if price != -1:
+        prices.append(price)
+        choice = input("Is it a pet (Y / N)? ")
+        if choice == 'Y' or choice == 'y':
+            isPet.append(True)
+        else:
+            isPet.append(False)
+        print("")
+    else:
+        break
+nItems = len(prices)
+discount(prices, isPet, nItems)
